@@ -2,6 +2,8 @@
 
 import { auth } from '@clerk/nextjs/server';
 import { TransactionData, TransactionResult } from '@/types/Transactions';
+import { db } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
 async function addTransaction(formData: FormData): Promise<TransactionResult> {
   const textValue = formData.get('text');
@@ -21,12 +23,21 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
     if (!userId) {
       return { error: 'User not found' };
     } else {
-      const transactionData: TransactionData = {
-        text,
-        amount,
-      };
+      try {
+        const transactionData: TransactionData = await db.transaction.create({
+          data: {
+            text,
+            amount,
+            userId,
+          },
+        });
 
-      return { data: transactionData };
+        revalidatePath('/');
+
+        return { data: transactionData };
+      } catch (error) {
+        return { error: 'Transaction not added' };
+      }
     }
   }
 }
