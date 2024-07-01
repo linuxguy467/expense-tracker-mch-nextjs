@@ -35,3 +35,14 @@ model Transaction {
 
   @@index([userId])
 }
+
+model TransactionAudit {
+  id             BigInt   @id @default(autoincrement())
+  transaction_id String   @default(uuid())
+  text           String
+  amount         Float
+  action         String
+  // Relation to user
+  userId         String
+  created_at     DateTime @default(now())
+}

@@ -36,6 +36,8 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
 
         return { data: transactionData };
       } catch (error) {
+        console.error(error);
+
         return { error: 'Transaction not added' };
       }
     }
