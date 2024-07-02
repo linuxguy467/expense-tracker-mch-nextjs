@@ -22,5 +22,9 @@
   "Guest": {
     "heading": "Welcome",
     "signInPrompt": "Please sign in to manage your transactions"
+  },
+  "IncomeExpense": {
+    "incomeHeading": "Income",
+    "expenseHeading": "Expense"
   }
 }
