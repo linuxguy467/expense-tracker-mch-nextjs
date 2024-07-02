@@ -6,12 +6,13 @@ const Balance = async () => {
   const { balance, error } = await getUserBalance();
 
   const t = await getTranslations('Balance');
+  const tIndex = await getTranslations('Index');
 
   if (!error) {
     const format = await getFormatter();
     const formattedBalance: string = format.number(balance ?? 0, {
       style: 'currency',
-      currency: countryToCurrency[t('countryCode')],
+      currency: countryToCurrency[tIndex('countryCode')],
     });
 
     return (
