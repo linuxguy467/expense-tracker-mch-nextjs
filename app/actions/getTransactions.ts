@@ -3,6 +3,7 @@
 import { db } from '@/lib/db';
 import { Transaction } from '@/types/Transaction';
 import { auth } from '@clerk/nextjs/server';
+import getFormattedAmount from './getFormattedAmount';
 
 async function getTransactions(): Promise<{
   transactions?: Transaction[];
@@ -21,7 +22,22 @@ async function getTransactions(): Promise<{
         },
       });
 
-      return { transactions };
+      const formattedTransactions: Transaction[] = [];
+      for (const transaction of transactions) {
+        const { formattedAmount } = await getFormattedAmount(
+          transaction.amount ?? 0
+        );
+        formattedTransactions.push({
+          id: transaction.id,
+          text: transaction.text,
+          amount: formattedAmount ?? '',
+          userId: transaction.userId,
+          className: transaction.amount < 0 ? 'minus' : 'plus',
+          created_at: transaction.created_at,
+        });
+      }
+
+      return { transactions: formattedTransactions };
     } catch (error) {
       console.error(error);
       return { error: 'Database error' };

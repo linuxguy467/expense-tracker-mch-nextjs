@@ -2,10 +2,11 @@
 
 import { db } from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
+import getFormattedAmount from '@/app/actions/getFormattedAmount';
 
 async function getIncomeExpense(): Promise<{
-  income?: number;
-  expense?: number;
+  income?: string;
+  expense?: string;
   error?: string;
 }> {
   const { userId } = auth();
@@ -24,9 +25,16 @@ async function getIncomeExpense(): Promise<{
           userId
         );
 
+      const { formattedAmount: formattedIncome } = await getFormattedAmount(
+        res[0].income ?? 0
+      );
+      const { formattedAmount: formattedExpense } = await getFormattedAmount(
+        res[0].expense ?? 0
+      );
+
       return {
-        income: res[0].income ?? 0,
-        expense: res[0].expense ?? 0,
+        income: formattedIncome ?? '',
+        expense: formattedExpense ?? '',
       };
     } catch (error) {
       console.error(error);

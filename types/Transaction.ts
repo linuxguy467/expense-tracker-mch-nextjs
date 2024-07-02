@@ -3,7 +3,8 @@
 export type Transaction = {
   id: string;
   text: string;
-  amount: number;
+  amount: string;
   userId: string;
+  className?: string;
   created_at: Date;
 };

@@ -2,9 +2,10 @@
 
 import { db } from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
+import getFormattedAmount from '@/app/actions/getFormattedAmount';
 
 async function getUserBalance(): Promise<{
-  balance?: number;
+  balance?: string;
   error?: string;
 }> {
   const { userId } = auth();
@@ -22,7 +23,11 @@ async function getUserBalance(): Promise<{
         0
       );
 
-      return { balance };
+      const { formattedAmount: formattedBalance } = await getFormattedAmount(
+        balance ?? 0
+      );
+
+      return { balance: formattedBalance ?? '' };
     } catch (error) {
       console.error(error);
       return { error: 'Database error' };

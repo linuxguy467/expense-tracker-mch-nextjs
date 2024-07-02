@@ -1,4 +1,3 @@
-import getFormattedAmount from '@/app/actions/getFormattedAmount';
 import getUserBalance from '@/app/actions/getUserBalance';
 import { getTranslations } from 'next-intl/server';
 
@@ -8,14 +7,10 @@ const Balance = async () => {
   const t = await getTranslations('Balance');
 
   if (!error) {
-    const { formattedAmount: formattedBalance } = await getFormattedAmount(
-      balance ?? 0
-    );
-
     return (
       <>
         <h4>{t('heading')}</h4>
-        <h1>{formattedBalance}</h1>
+        <h1>{balance}</h1>
       </>
     );
   } else {
