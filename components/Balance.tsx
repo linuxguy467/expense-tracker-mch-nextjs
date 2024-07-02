@@ -1,19 +1,16 @@
+import getFormattedAmount from '@/app/actions/getFormattedAmount';
 import getUserBalance from '@/app/actions/getUserBalance';
-import countryToCurrency from 'country-to-currency';
-import { getFormatter, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 const Balance = async () => {
   const { balance, error } = await getUserBalance();
 
   const t = await getTranslations('Balance');
-  const tIndex = await getTranslations('Index');
 
   if (!error) {
-    const format = await getFormatter();
-    const formattedBalance: string = format.number(balance ?? 0, {
-      style: 'currency',
-      currency: countryToCurrency[tIndex('countryCode')],
-    });
+    const { formattedAmount: formattedBalance } = await getFormattedAmount(
+      balance ?? 0
+    );
 
     return (
       <>
