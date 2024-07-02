@@ -29,5 +29,9 @@
     "incomeHeading": "Income",
     "expenseHeading": "Expense",
     "incomeExpenseErrorHeading": "Cannot get the Income and Expense"
+  },
+  "TransactionList": {
+    "heading": "History",
+    "errorHeading": "Cannot get the transactions"
   }
 }
