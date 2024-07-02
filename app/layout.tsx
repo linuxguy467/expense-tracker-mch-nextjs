@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -13,17 +15,27 @@ export const metadata: Metadata = {
   description: 'Track your expenses and create a budget',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
     <ClerkProvider>
-      <html lang='en'>
+      <html lang={locale}>
         <body className={roboto.className}>
           <Header />
-          <main className='container'>{children}</main>
+          <main className='container'>
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </main>
           <ToastContainer />
         </body>
       </html>

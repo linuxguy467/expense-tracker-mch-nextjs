@@ -1,0 +1,24 @@
+{
+  "AddTransaction": {
+    "addTransactionHeading": "Add transaction",
+    "addTransactionButton": "Add transaction",
+    "amountPrompt": "Amount",
+    "amountDirective": "(negative - expense, positive - income)",
+    "amountPlaceholder": "Enter Amount...",
+    "textPrompt": "Text",
+    "textPlaceholder": "Enter Text..."
+  },
+  "Index": {
+    "countryCode": "US"
+  },
+  "Header": {
+    "title": "Expense Tracker"
+  },
+  "Balance": {
+    "heading": "Your Balance"
+  },
+  "Guest": {
+    "heading": "Welcome",
+    "signInPrompt": "Please sign in to manage your transactions"
+  }
+}
