@@ -7,14 +7,16 @@ import { getTranslations } from 'next-intl/server';
 const HomePage = async () => {
   const user = await currentUser();
 
-  const t = await getTranslations('Index');
+  const t = await getTranslations('HomePage');
 
   return !user ? (
     <Guest />
   ) : (
     <main>
-      <h2>Welcome, {user.firstName}</h2>
-      <Balance countryCode={t('countryCode')} />
+      <h2>
+        {t('greeting')}, {user.firstName}
+      </h2>
+      <Balance />
       <AddTransaction />
     </main>
   );

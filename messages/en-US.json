@@ -8,14 +8,16 @@
     "textPrompt": "Text",
     "textPlaceholder": "Enter Text..."
   },
-  "Index": {
-    "countryCode": "US"
+  "HomePage": {
+    "greeting": "Welcome"
   },
   "Header": {
     "title": "Expense Tracker"
   },
   "Balance": {
-    "heading": "Your Balance"
+    "countryCode": "US",
+    "heading": "Your Balance",
+    "balanceErrorHeading": "Cannot get the balance"
   },
   "Guest": {
     "heading": "Welcome",

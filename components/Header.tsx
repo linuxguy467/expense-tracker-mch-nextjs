@@ -1,15 +1,11 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import { checkUser } from '@/lib/checkUser';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-const Header = () => {
-  let user;
+const Header = async () => {
+  const user = await checkUser();
 
-  checkUser()
-    .then((data) => (user = data))
-    .catch((err) => console.error(err));
-
-  const t = useTranslations('Header');
+  const t = await getTranslations('Header');
 
   return (
     <nav className='navbar'>
