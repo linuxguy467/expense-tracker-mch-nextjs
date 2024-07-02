@@ -19,7 +19,10 @@ async function getFormattedAmount(amount: number): Promise<{
 
       const formattedAmount = format.number(amount, {
         style: 'currency',
-        currency: countryToCurrency[tIndex('countryCode')],
+        currency:
+          countryToCurrency[
+            tIndex('countryCode') as keyof typeof countryToCurrency
+          ],
       });
 
       return { formattedAmount };
