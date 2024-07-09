@@ -146,7 +146,8 @@ input[type='number'] {
 }
 
 .btn:focus,
-.delete-btn:focus {
+.delete-btn:focus,
+.export-btn:focus {
   outline: 0;
 }
 
@@ -191,8 +192,32 @@ input[type='number'] {
   transition: opacity 0.3s ease;
 }
 
+.export-btn {
+  cursor: pointer;
+  background-color: #2ac069;
+  box-shadow: var(--box-shadow);
+  color: #fff;
+  border: 0;
+  display: block;
+  font-size: 16px;
+  margin: 10px 0 5px;
+  padding: 10px;
+  width: 12%;
+}
+
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+.balance-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.balance-container > div {
+  flex: 1;
+  text-align: left;
 }
 
 .cl-profileSectionPrimaryButton {

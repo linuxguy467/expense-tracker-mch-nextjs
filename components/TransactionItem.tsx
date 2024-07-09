@@ -21,8 +21,6 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
     }
   };
 
-  console.log(transaction);
-
   return (
     <li className={transaction.className}>
       {transaction.text}

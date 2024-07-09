@@ -5,6 +5,7 @@ import Balance from '@/components/Balance';
 import IncomeExpense from '@/components/IncomeExpense';
 import { getTranslations } from 'next-intl/server';
 import TransactionList from '@/components/TransactionList';
+import CSVExport from '@/components/CSVExport';
 
 const HomePage = async () => {
   const user = await currentUser();
@@ -18,7 +19,10 @@ const HomePage = async () => {
       <h2>
         {t('greeting')}, {user.firstName}
       </h2>
-      <Balance />
+      <section className='balance-container'>
+        <Balance />
+        <CSVExport />
+      </section>
       <IncomeExpense />
       <AddTransaction />
       <TransactionList />

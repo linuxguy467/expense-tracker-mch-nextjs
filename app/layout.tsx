@@ -2,11 +2,15 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Roboto } from 'next/font/google';
-import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Header from '@/components/Header';
 import { ToastContainer } from 'react-toastify';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+
+config.autoAddCss = false;
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'] });
 

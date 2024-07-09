@@ -8,17 +8,17 @@ const Balance = async () => {
 
   if (!error) {
     return (
-      <>
+      <div>
         <h4>{t('heading')}</h4>
         <h1>{balance}</h1>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div>
         <h4>{t('balanceErrorHeading')}</h4>
         <h1>{error}</h1>
-      </>
+      </div>
     );
   }
 };
